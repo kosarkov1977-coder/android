@@ -12,7 +12,6 @@ class VolcanoRenderer : GLSurfaceView.Renderer {
     private val vp = FloatArray(16)
 
     private lateinit var volcano: Mesh
-    private lateinit var figure: Mesh
 
     @Volatile
     private var userYaw = 0f
@@ -26,7 +25,7 @@ class VolcanoRenderer : GLSurfaceView.Renderer {
         GLES20.glClearColor(0.04f, 0.05f, 0.1f, 1f)
         GLES20.glEnable(GLES20.GL_DEPTH_TEST)
         volcano = MeshFactory.createVolcanoCone()
-        figure = MeshFactory.createTorusKnot()
+
     }
 
     override fun onSurfaceChanged(gl: GL10?, width: Int, height: Int) {
@@ -52,7 +51,7 @@ class VolcanoRenderer : GLSurfaceView.Renderer {
         Matrix.translateM(modelFigure, 0, 0f, 1.1f, 0f)
         Matrix.rotateM(modelFigure, 0, autoRot + userYaw, 0f, 1f, 0f)
         Matrix.rotateM(modelFigure, 0, userPitch, 1f, 0f, 0f)
-        figure.draw(vp, modelFigure, floatArrayOf(0.96f, 0.45f, 0.18f, 1f))
+
     }
 
     fun dragRotate(dx: Float, dy: Float) {
